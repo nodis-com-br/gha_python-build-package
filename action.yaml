@@ -1,5 +1,26 @@
 name: 'python-publish-package'
 description: ''
+inputs:
+  gh_global_token:
+    description: ''
+    required: true
+  pypi_host:
+    description: ''
+    required: true
+  pypi_user:
+    description: ''
+    required: true
+  pypi_password:
+    description: ''
+    required: true
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'composite'
+  steps:
+    - run: python3 setup.py sdist
+      shell: bash
+    - run: python3 -m twine upload dist/*
+      shell: bash
+      env:
+        TWINE_USERNAME: ${{ inputs.pypi_user }}
+        TWINE_PASSWORD: ${{ inputs.pypi_password }}
+        TWINE_REPOSITORY_URL: https://${{ inputs.pypi_host }}/simple
