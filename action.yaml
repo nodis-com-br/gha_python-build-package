@@ -16,6 +16,8 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - run: pip3 install twine
+      shell: bash
     - run: python3 setup.py sdist
       shell: bash
     - run: python3 -m twine upload dist/*
