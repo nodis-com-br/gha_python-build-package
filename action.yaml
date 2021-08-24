@@ -20,7 +20,7 @@ runs:
       shell: bash
     - run: python3 setup.py sdist
       shell: bash
-    - run: python3 -m twine upload dist/*
+    - run: python3 -m twine upload dist/* --verbose
       shell: bash
       env:
         TWINE_USERNAME: ${{ inputs.pypi_user }}
