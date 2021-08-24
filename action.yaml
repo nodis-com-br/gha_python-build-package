@@ -1,9 +1,6 @@
 name: 'python-publish-package'
 description: ''
 inputs:
-  gh_global_token:
-    description: ''
-    required: true
   pypi_host:
     description: ''
     required: true
